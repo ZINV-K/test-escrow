@@ -11,7 +11,7 @@ publish = false
 solana-program = "*"
 thiserror = "*"
 spl-token = {version = "*", features = ["no-entrypoint"]}
-
+arrayref = "*"
 
 [lib]
 crate-type = ["cdylib", "lib"]

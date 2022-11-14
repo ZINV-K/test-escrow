@@ -1,6 +1,7 @@
-use crate::error::EscrowError::InvalidInstruction;
-use solana_program::program_error::ProgramError;
 use std::convert::TryInto;
+use solana_program::program_error::ProgramError;
+
+use crate::error::EscrowError::InvalidInstruction;
 
 pub enum EscrowInstruction {
     /// 에스크로 계정을 생성 및 채우고 주어진 임시 토큰 계정의 소유권을 PDA로 이전하여 거래를 시작합니다.
@@ -35,7 +36,7 @@ impl EscrowInstruction {
                 amount: Self::unpack_amount(rest)?,
             },
             // 태그가 0이 아니면 커스텀 에러 타입(EscrowError) 전송
-            // *** into는 무슨 용도(?)
+            // into: 타입을 반환 InvalidInstruction의 타입인 EscrowError 반환
             _ => return Err(InvalidInstruction.into()),
         })
     }
